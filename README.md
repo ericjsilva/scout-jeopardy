@@ -1,5 +1,7 @@
-# Boy Scout Jeopardy
-Javascript/HTML implementation of Jeopardy for Boy Scout Troops.
+# Scout Jeopardy
 
-# License
+Javascript/HTML implementation of Jeopardy for Scouting activities.
+
+## License
+
 MIT
