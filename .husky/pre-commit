@@ -1,0 +1,10 @@
+# Regenerate game-embedded.js from JSON data to prevent stale embedded data
+node js/build-embedded.js
+
+# If game-embedded.js changed, auto-stage the updated file
+if ! git diff --quiet js/game-embedded.js 2>/dev/null; then
+  echo "⚠️  js/game-embedded.js was out of date — regenerated and staged."
+  git add js/game-embedded.js
+fi
+
+npx biome check --staged --no-errors-on-unmatched --reporter=summary

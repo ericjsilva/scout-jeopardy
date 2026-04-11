@@ -1,0 +1,28 @@
+{
+  "name": "scout-jeopardy",
+  "version": "1.0.0",
+  "description": "A fully interactive Jeopardy-style game designed specifically for Scout troops.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericjsilva/scout-jeopardy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ericjsilva/scout-jeopardy/issues"
+  },
+  "homepage": "https://github.com/ericjsilva/scout-jeopardy#readme",
+  "scripts": {
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "lint": "biome lint .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.11",
+    "@playwright/test": "^1.59.1",
+    "http-server": "^14.1.1",
+    "husky": "^9.1.7"
+  }
+}
