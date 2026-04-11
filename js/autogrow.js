@@ -9,12 +9,12 @@
  * NOTE: This script requires jQuery to work.  Download jQuery at www.jquery.com
  */
 
-(function(jQuery) {
+(function (jQuery) {
 
     var self = null;
 
-    jQuery.fn.autogrow = function(o) {
-        return this.each(function() {
+    jQuery.fn.autogrow = function (o) {
+        return this.each(function () {
             new jQuery.autogrow(this, o);
         });
     };
@@ -29,7 +29,7 @@
      * @cat Plugins/autogrow
      */
 
-    jQuery.autogrow = function(e, o) {
+    jQuery.autogrow = function (e, o) {
         this.options = o || {};
         this.dummy = null;
         this.interval = null;
@@ -38,7 +38,7 @@
         this.max_height = this.options.maxHeight || parseInt(jQuery(e).css('max-height'));;
         this.textarea = jQuery(e);
 
-        if (this.line_height == NaN)
+        if (isNaN(this.line_height))
             this.line_height = 0;
 
         // Only one textarea activated at a time, the one being used
@@ -53,32 +53,32 @@
 
     jQuery.autogrow.fn.extend({
 
-        init: function() {
+        init: function () {
             var self = this;
             this.textarea.css({
                 overflow: 'hidden',
                 display: 'block'
             });
-            this.textarea.bind('focus', function() {
+            this.textarea.on('focus', function () {
                 self.startExpand()
-            }).bind('blur', function() {
+            }).on('blur', function () {
                 self.stopExpand()
             });
             this.checkExpand();
         },
 
-        startExpand: function() {
+        startExpand: function () {
             var self = this;
-            this.interval = window.setInterval(function() {
+            this.interval = window.setInterval(function () {
                 self.checkExpand()
             }, 400);
         },
 
-        stopExpand: function() {
+        stopExpand: function () {
             clearInterval(this.interval);
         },
 
-        checkExpand: function() {
+        checkExpand: function () {
 
             if (this.dummy == null) {
                 this.dummy = jQuery('<div></div>');
@@ -99,7 +99,7 @@
             var html = this.textarea.val().replace(/(<|>)/g, '');
 
             // IE is different, as per usual
-            if ($.browser.msie) {
+            if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.userAgent.indexOf('Trident') !== -1) {
                 html = html.replace(/\n/g, '<BR>new');
             } else {
                 html = html.replace(/\n/g, '<br>new');

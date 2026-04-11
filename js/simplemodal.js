@@ -7,7 +7,7 @@
  */
 ;
 (function($) {
-    var ie6 = $.browser.msie && parseInt($.browser.version) == 6 && typeof window['XMLHttpRequest'] != "object",
+    var ie6 = false,
         ieQuirks = null,
         w = [];
     $.modal = function(data, options) {
@@ -55,13 +55,13 @@
             if (s.d.data) {
                 return false;
             }
-            ieQuirks = $.browser.msie && !$.boxModel;
+            ieQuirks = false;
             s.o = $.extend({}, $.modal.defaults, options);
             s.zIndex = s.o.zIndex;
             s.occb = false;
             if (typeof data == 'object') {
                 data = data instanceof jQuery ? data : $(data);
-                if (data.parent().parent().size() > 0) {
+                if (data.parent().parent().length > 0) {
                     s.d.parentNode = data.parent();
                     if (!s.o.persist) {
                         s.d.orig = data.clone(true);
@@ -76,7 +76,7 @@
             s.create(data);
             data = null;
             s.open();
-            if ($.isFunction(s.o.onShow)) {
+            if (typeof s.o.onShow === 'function') {
                 s.o.onShow.apply(s, [s.d]);
             }
             return s;
@@ -128,17 +128,17 @@
         },
         bindEvents: function() {
             var s = this;
-            $('.' + s.o.closeClass).bind('click.simplemodal', function(e) {
+            $('.' + s.o.closeClass).on('click.simplemodal', function(e) {
                 e.preventDefault();
                 s.close();
             });
             if (s.o.close && s.o.overlayClose) {
-                s.d.overlay.bind('click.simplemodal', function(e) {
+                s.d.overlay.on('click.simplemodal', function(e) {
                     e.preventDefault();
                     s.close();
                 });
             }
-            $(document).bind('keydown.simplemodal', function(e) {
+            $(document).on('keydown.simplemodal', function(e) {
                 if (s.o.focus && e.keyCode == 9) {
                     s.watchTab(e);
                 } else if ((s.o.close && s.o.escClose) && e.keyCode == 27) {
@@ -146,7 +146,7 @@
                     s.close();
                 }
             });
-            $(window).bind('resize.simplemodal', function() {
+            $(window).on('resize.simplemodal', function() {
                 w = s.getDimensions();
                 s.setContainerDimensions(true);
                 if (ie6 || ieQuirks) {
@@ -164,10 +164,10 @@
             });
         },
         unbindEvents: function() {
-            $('.' + this.o.closeClass).unbind('click.simplemodal');
-            $(document).unbind('keydown.simplemodal');
-            $(window).unbind('resize.simplemodal');
-            this.d.overlay.unbind('click.simplemodal');
+            $('.' + this.o.closeClass).off('click.simplemodal');
+            $(document).off('keydown.simplemodal');
+            $(window).off('resize.simplemodal');
+            this.d.overlay.off('click.simplemodal');
         },
         fixIE: function() {
             var s = this,
@@ -220,7 +220,7 @@
         },
         getDimensions: function() {
             var el = $(window);
-            var h = $.browser.opera && $.browser.version > '9.5' && $.fn.jquery <= '1.2.6' ? document.documentElement['clientHeight'] : $.browser.opera && $.browser.version < '9.5' && $.fn.jquery > '1.2.6' ? window.innerHeight : el.height();
+            var h = el.height();
             return [h, el.width()];
         },
         getVal: function(v) {
@@ -316,7 +316,7 @@
         open: function() {
             var s = this;
             s.d.iframe && s.d.iframe.show();
-            if ($.isFunction(s.o.onOpen)) {
+            if (typeof s.o.onOpen === 'function') {
                 s.o.onOpen.apply(s, [s.d]);
             } else {
                 s.d.overlay.show();
@@ -332,7 +332,7 @@
                 return false;
             }
             s.unbindEvents();
-            if ($.isFunction(s.o.onClose) && !s.occb) {
+            if (typeof s.o.onClose === 'function' && !s.occb) {
                 s.occb = true;
                 s.o.onClose.apply(s, [s.d]);
             } else {
