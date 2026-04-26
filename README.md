@@ -43,6 +43,12 @@ A sleek, fully interactive Jeopardy-style game for Scout troops. Test your Scout
    brew install just
    ```
 
+   **Install pinact:**
+   This project uses `pinact` to update and pin GitHub Action versions. You can install it using brew:
+   ```bash
+   brew install pinact
+   ```
+
 
    **Run the App:**
    Once Node and pnpm are installed, set up and run the game:
@@ -73,6 +79,7 @@ We use modern web tooling (Just, Biome, Husky) for a robust development lifecycl
 - `just serve` - Runs a local Node HTTP server on port 8000.
 - `just check` - Runs formatting and linting rules. 
 - `just fix` - Auto-fixes fixable code styling issues.
+- `just pinact` - Pins GitHub Actions versions.
 - `just test-e2e` - Executes Playwright end-to-end tests.
 
 ## 🤝 Contributing & License

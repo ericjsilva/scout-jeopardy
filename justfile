@@ -22,6 +22,10 @@ check: sync
 fix:
     pnpm exec biome check --write .
 
+# Pin GitHub Actions versions
+pinact:
+    pinact run
+
 # Start a local HTTP server for testing
 serve port="8000":
     @echo "Starting local Node HTTP server on port {{port}}..."
