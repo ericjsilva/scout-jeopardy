@@ -32,6 +32,18 @@ A sleek, fully interactive Jeopardy-style game for Scout troops. Test your Scout
    npm install -g pnpm
    ```
 
+   or install using Homebrew:
+   ```bash
+   brew install pnpm
+   ```
+
+   **Install Just:**
+   This project uses `just` as its build tool. You can install it using brew:
+   ```bash
+   brew install just
+   ```
+
+
    **Run the App:**
    Once Node and pnpm are installed, set up and run the game:
    ```bash
