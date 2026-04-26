@@ -26,8 +26,14 @@ A sleek, fully interactive Jeopardy-style game for Scout troops. Test your Scout
    nvm use
    ```
 
+   **Install pnpm:**
+   This project uses `pnpm` as its package manager. You can install it using npm:
+   ```bash
+   npm install -g pnpm
+   ```
+
    **Run the App:**
-   Once Node is installed, set up and run the game:
+   Once Node and pnpm are installed, set up and run the game:
    ```bash
    just setup
    just serve
