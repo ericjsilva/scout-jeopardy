@@ -7,4 +7,4 @@ if ! git diff --quiet js/game-embedded.js 2>/dev/null; then
   git add js/game-embedded.js
 fi
 
-npx biome check --staged --no-errors-on-unmatched --reporter=summary
+pnpm exec biome check --staged --no-errors-on-unmatched --reporter=summary

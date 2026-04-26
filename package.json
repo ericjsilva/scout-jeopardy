@@ -1,5 +1,6 @@
 {
   "name": "scout-jeopardy",
+  "packageManager": "pnpm@10.33.2",
   "version": "1.0.0",
   "description": "A fully interactive Jeopardy-style game designed specifically for Scout troops.",
   "license": "MIT",
